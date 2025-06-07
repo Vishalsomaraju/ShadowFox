@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function Contact() {
-  return <div></div>;
+  return (
+    <section id="contact" className="min-h-screen">
+      <div></div>
+    </section>
+  );
 }
