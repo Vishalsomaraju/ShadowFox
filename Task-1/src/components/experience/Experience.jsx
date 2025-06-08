@@ -14,7 +14,7 @@ export default function Experience() {
     <section id="experience" className="min-h-screen">
       <div id="Experience" className="p-10 md:p-24 text-white">
         <h1 className="inline-block text-2xl md:text-4xl text-cyan-400 font-bold transition-transform duration-300 transform hover:scale-105 origin-center mb-8">
-          Experience
+          Skills/Experience
         </h1>
 
         <div className="flex flex-wrap items-center justify-around">

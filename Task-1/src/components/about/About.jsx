@@ -4,12 +4,15 @@ import { IoArrowForward } from "react-icons/io5";
 
 export default function About() {
   return (
-    <section id="about" className="min-h-screen">
-      <div className="text-white md:flex items-center md:flex-wrap md:justify-center bg-gradient-to-tl from-[#1e293b] via-[#334155] to-[#475569] bg-opacity-90 shadow-inner border-t border-slate-600 mx-0 md:mx-20 rounded-lg p-12">
-        <h2 className="text-2xl md:text-4xl font-bold mb-8 text-cyan-400 transition transform hover:scale-105">
+    <section
+      id="about"
+      className="min-h-screen flex items-center justify-center px-4"
+    >
+      <div className="text-white md:flex items-center md:flex-wrap md:justify-center bg-gradient-to-tl from-[#1e293b] via-[#334155] to-[#475569] bg-opacity-90 shadow-inner border-t border-slate-600 rounded-lg p-12 max-w-5xl w-full">
+        <h2 className="w-full text-center text-2xl md:text-4xl font-bold mb-8 text-cyan-400 transition transform hover:scale-105">
           About
         </h2>
-        <div className="md:flex flex-wrap flex-col md:flex-row items-center gap-8">
+        <div className="md:flex flex-wrap flex-col md:flex-row items-center gap-8 justify-center">
           <img className="md:h-80 m-4" src={about_avatar} alt="Idea Avatar" />
           <ul className="space-y-6">
             <li>

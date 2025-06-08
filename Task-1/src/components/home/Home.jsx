@@ -5,6 +5,18 @@ import { PiArrowUpRightBold } from "react-icons/pi";
 const letters = "Hello! I Am VISHAL".split("");
 
 export default function Home() {
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      const navbarHeight = 64;
+      const y =
+        contactSection.getBoundingClientRect().top +
+        window.pageYOffset -
+        navbarHeight;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="home" className="min-h-screen">
       <div className="text-white mt-10 flex flex-col md:flex-row w-full justify-between items-center p-10 md:p-20 gap-8">
@@ -22,19 +34,21 @@ export default function Home() {
           </h1>
 
           <p className="text-base md:text-2xl mt-4 text-gray-300 tracking-tight">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Turning ideas into interactive experiences.
+          </p>
+          <p className="text-base md:text-2xl mt-4 text-gray-300 tracking-tight">
+            “Innovate. Code. Repeat.”
           </p>
 
-          <a href="#contact">
-            <button
-              aria-label="Hire me"
-              role="button"
-              className="mt-6 px-6 py-3 rounded-full text-lg font-semibold text-white flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 transition duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_5px_rgba(168,85,247,0.3)] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
-            >
-              Contact Me
-              <PiArrowUpRightBold className="text-lg" />
-            </button>
-          </a>
+          <button
+            aria-label="Hire me"
+            role="button"
+            onClick={scrollToContact}
+            className="mt-6 px-6 py-3 rounded-full text-lg font-semibold text-white flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 transition duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_5px_rgba(168,85,247,0.3)] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
+          >
+            Contact Me
+            <PiArrowUpRightBold className="text-lg" />
+          </button>
         </div>
 
         <div className="md:w-2/4 flex justify-center">
