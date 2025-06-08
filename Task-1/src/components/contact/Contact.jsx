@@ -17,11 +17,10 @@ export default function Contact() {
   });
   const [sending, setSending] = useState(false);
   const [feedback, setFeedback] = useState(null);
+  const [emailCopied, setEmailCopied] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
-    };
+    const handleScroll = () => setShowScrollTop(window.scrollY > 300);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -33,15 +32,10 @@ export default function Contact() {
     }
   }, [feedback]);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e) => {
@@ -76,17 +70,16 @@ export default function Contact() {
           setSending(false);
         },
         (error) => {
+          console.error(error);
           setFeedback({
             type: "error",
             message: "Failed to send message. Try again.",
           });
           setSending(false);
-          console.error(error);
         }
       );
   };
 
-  const [emailCopied, setEmailCopied] = useState(false);
   const copyEmailToClipboard = () => {
     navigator.clipboard.writeText("vishalsomaraju9@gmail.com").then(() => {
       setEmailCopied(true);
@@ -97,11 +90,12 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="scroll-mt-20 min-h-screen flex items-center justify-center bg-[#1e293b] text-white px-4 py-12"
+      className="scroll-mt-20 min-h-screen flex items-center justify-center bg-[#1e293b] text-white px-4 py-16"
     >
-      <div className="w-full max-w-6xl bg-[#334155] rounded-2xl shadow-xl p-6 md:p-10 flex flex-col md:flex-row gap-10">
+      <div className="w-full max-w-6xl bg-[#334155] rounded-2xl shadow-xl p-6 md:p-10 flex flex-col md:flex-row gap-12">
+        {/* Left - Form */}
         <div className="flex-1">
-          <h2 className="text-3xl md:text-5xl font-bold text-cyan-400 mb-2">
+          <h2 className="text-3xl md:text-5xl font-bold text-cyan-400 mb-3">
             Get In Touch
           </h2>
           <p className="text-gray-300 mb-6">
@@ -145,12 +139,11 @@ export default function Contact() {
               {sending ? "Sending..." : "Send"}
             </button>
           </form>
+
           {feedback && (
             <p
               className={`mt-4 font-semibold transition-opacity duration-500 ${
-                feedback.type === "success"
-                  ? "text-green-400 opacity-100"
-                  : "text-red-400 opacity-100"
+                feedback.type === "success" ? "text-green-400" : "text-red-400"
               }`}
             >
               {feedback.message}
@@ -158,11 +151,12 @@ export default function Contact() {
           )}
         </div>
 
-        <div className="flex-1 flex flex-col justify-center items-center gap-6 text-center">
+        {/* Right - Info */}
+        <div className="flex-1 flex flex-col justify-center items-center text-center gap-4">
           <img
             src="https://cdn-icons-png.flaticon.com/512/561/561127.png"
             alt="Mail Icon"
-            className="w-32 h-32 mx-auto"
+            className="w-28 h-28 md:w-32 md:h-32"
           />
           <div className="space-y-2 text-sm md:text-base text-gray-300">
             <div className="flex items-center gap-2 justify-center">
@@ -176,12 +170,13 @@ export default function Contact() {
             </div>
           </div>
 
+          {/* Social Links */}
           <div className="flex gap-4 mt-4 text-cyan-400 text-2xl">
             <a
               href="https://www.linkedin.com/in/vishalsomaraju"
               target="_blank"
               rel="noopener noreferrer"
-              className="transform transition-transform duration-300 hover:scale-125"
+              className="hover:scale-125 transition-transform"
             >
               <FaLinkedin />
             </a>
@@ -189,19 +184,21 @@ export default function Contact() {
               href="https://github.com/Vishalsomaraju"
               target="_blank"
               rel="noopener noreferrer"
-              className="transform transition-transform duration-300 hover:scale-125"
+              className="hover:scale-125 transition-transform"
             >
               <FaGithub />
             </a>
             <button
               onClick={copyEmailToClipboard}
-              className="transform transition-transform duration-300 hover:scale-125 focus:outline-none"
+              className="hover:scale-125 transition-transform focus:outline-none"
               aria-label="Copy email to clipboard"
               type="button"
             >
               <FaEnvelope />
             </button>
           </div>
+
+          {/* Copied Email Message */}
           {emailCopied && (
             <div className="fixed bottom-20 right-6 bg-cyan-500 text-white px-4 py-2 rounded shadow-lg animate-fadeInOut">
               Email copied to clipboard!
@@ -210,6 +207,7 @@ export default function Contact() {
         </div>
       </div>
 
+      {/* Scroll-to-top button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}

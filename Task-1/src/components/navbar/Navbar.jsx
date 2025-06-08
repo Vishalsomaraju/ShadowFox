@@ -7,7 +7,6 @@ const NAVBAR_HEIGHT = 64;
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-
   const ticking = useRef(false);
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
@@ -57,6 +56,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeSection]);
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [menuOpen]);
+
   const navSections = ["about", "experience", "projects", "contact"];
 
   return (
@@ -64,10 +71,10 @@ export default function Navbar() {
       <nav
         role="navigation"
         aria-label="Main navigation"
-        className="bg-white border-gray-200 fixed w-full dark:bg-gray-900 z-50"
+        className="bg-white border-gray-200 fixed w-full top-0 left-0 dark:bg-gray-900 z-50"
         style={{ height: NAVBAR_HEIGHT }}
       >
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div className="w-full max-w-screen-xl flex flex-wrap items-center justify-between px-4 py-3 mx-auto">
           <a
             href="#home"
             className="flex items-center space-x-3 rtl:space-x-reverse group cursor-pointer"
@@ -81,7 +88,7 @@ export default function Navbar() {
               className="h-8 transition-transform duration-300 group-hover:scale-110"
               alt="react Logo"
             />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white transition-transform duration-300 transform group-hover:text-cyan-500 group-hover:scale-110">
+            <span className="text-xl sm:text-2xl font-semibold whitespace-nowrap dark:text-white transition-transform duration-300 transform group-hover:text-cyan-500 group-hover:scale-110">
               Portfolio
             </span>
           </a>
@@ -98,33 +105,35 @@ export default function Navbar() {
             )}
           </button>
 
-          <div
-            className={`absolute top-full right-4 mt-2 w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50 transition-all duration-300 overflow-hidden ${
-              menuOpen
-                ? "max-h-96 opacity-100 visible"
-                : "max-h-0 opacity-0 invisible"
-            } lg:hidden`}
-          >
-            <ul className="py-1">
-              {navSections.map((section) => (
-                <li key={section}>
-                  <a
-                    href={`#${section}`}
-                    className={`block px-4 py-2 transition-all duration-300 transform hover:scale-105 ${
-                      activeSection === section
-                        ? "bg-gray-700 text-cyan-500 font-semibold"
-                        : "hover:bg-gray-700 text-gray-700 dark:text-white hover:text-cyan-500"
-                    }`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(section);
-                    }}
-                  >
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          <div className="absolute top-full left-0 right-0 mx-auto mt-2 w-11/12 max-w-xs lg:hidden z-50">
+            <div
+              className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg overflow-hidden transition-all duration-300 ${
+                menuOpen
+                  ? "max-h-96 opacity-100 visible"
+                  : "max-h-0 opacity-0 invisible"
+              }`}
+            >
+              <ul className="py-1">
+                {navSections.map((section) => (
+                  <li key={section}>
+                    <a
+                      href={`#${section}`}
+                      className={`block px-4 py-2 transition-all duration-300 transform hover:scale-105 ${
+                        activeSection === section
+                          ? "bg-gray-700 text-cyan-500 font-semibold"
+                          : "hover:bg-gray-700 text-gray-700 dark:text-white hover:text-cyan-500"
+                      }`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(section);
+                      }}
+                    >
+                      {section.charAt(0).toUpperCase() + section.slice(1)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <ul className="hidden lg:flex space-x-8 font-medium text-gray-700 dark:text-white">
