@@ -31,7 +31,7 @@ export default function Home() {
               role="button"
               className="mt-6 px-6 py-3 rounded-full text-lg font-semibold text-white flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 transition duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_5px_rgba(168,85,247,0.3)] focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
             >
-              Hire Me
+              Contact Me
               <PiArrowUpRightBold className="text-lg" />
             </button>
           </a>

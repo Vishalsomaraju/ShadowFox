@@ -18,7 +18,6 @@ export default function Experience() {
         </h1>
 
         <div className="flex flex-wrap items-center justify-around">
-          {/* Tech Stack Icons */}
           <div className="flex flex-wrap md:w-2/5 gap-8 md:p-12 py-10 justify-center">
             <span className="p-3 bg-zinc-950 flex items-center rounded-2xl transition duration-300 transform hover:scale-110 hover:shadow-[0_0_20px_5px_rgba(168,85,247,0.3)]">
               <FaHtml5 color="#E34F26" size={50} />
@@ -46,23 +45,25 @@ export default function Experience() {
             </span>
           </div>
 
-          <div className="flex flex-col gap-2 bg-slate-950 bg-opacity-45 rounded-xl p-6 shadow-xl max-w-md transition duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/30">
-            <div className="flex items-center gap-4 ">
-              <FaGoogle color="#4285f4" size={50} />
-              <div>
-                <h2 className="text-xl font-semibold text-purple-400">
-                  Example
-                </h2>
-                <p className="text-sm text-gray-400 italic">
-                  Duration: xxxx – May !xxxx
-                </p>
+          <div>
+            <div className="flex flex-col gap-2 bg-slate-950 bg-opacity-45 rounded-xl p-6 shadow-xl max-w-md transition duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/30">
+              <div className="flex items-center gap-4 ">
+                <FaGoogle color="#4285f4" size={50} />
+                <div>
+                  <h2 className="text-xl font-semibold text-purple-400">
+                    Example
+                  </h2>
+                  <p className="text-sm text-gray-400 italic">
+                    Duration: xxxx – May !xxxx
+                  </p>
+                </div>
               </div>
+              <ul className="list-disc list-inside mt-4 text-sm text-gray-200 leading-relaxed pl-2">
+                <li>Worked on projects involving x, y, z</li>
+                <li>Collaborated in a team of n developers</li>
+                <li>Optimized APIs for better performance</li>
+              </ul>
             </div>
-            <ul className="list-disc list-inside mt-4 text-sm text-gray-200 leading-relaxed pl-2">
-              <li>Worked on projects involving x, y, z</li>
-              <li>Collaborated in a team of n developers</li>
-              <li>Optimized APIs for better performance</li>
-            </ul>
           </div>
         </div>
       </div>
