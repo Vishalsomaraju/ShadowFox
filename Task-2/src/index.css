@@ -14,3 +14,19 @@
 .fade-in-up {
   animation: fadeInUp 0.8s ease-out;
 }
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+input {
+  background-color: #ffffff;
+  accent-color: red;
+  border: ipx solid #ccc;
+  color: #333;
+}
