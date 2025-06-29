@@ -1,59 +1,66 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { getData } from "../context/DataContext";
-import { IoFilter } from "react-icons/io5";
+import { BsFilterLeft } from "react-icons/bs";
 
-export default function FilterSection() {
-  const [price, setPrice] = useState(5000);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedBrand, setSelectedBrand] = useState("All");
-  const [showFilters, setShowFilters] = useState(false); // toggle for dropdown
+const FilterSection = ({
+  search,
+  setSearch,
+  brand,
+  setBrand,
+  priceRange,
+  setPriceRange,
+  category,
+  setCategory,
+  handleBrandChange,
+  handleCategoryChange,
+}) => {
+  const { categoryOnlyData, brandOnlyData } = getData();
+  const [showFilters, setShowFilters] = useState(false);
 
-  const { data } = getData();
-
-  const categoryOnlyData = useMemo(() => {
-    const newVal = data?.map((curElem) => curElem["category"]);
-    return ["All", ...new Set(newVal)];
-  }, [data]);
-
-  const brandOnlyData = useMemo(() => {
-    const brands = data?.map((curElem) => curElem["brand"]);
-    return ["All", ...new Set(brands)];
-  }, [data]);
+  const resetFilters = () => {
+    setSearch("");
+    setCategory("All");
+    setBrand("All");
+    setPriceRange([0, 5000]);
+  };
 
   const FilterContent = () => (
-    <div className="bg-gray-100 p-4 rounded-md mt-4 lg:mt-0">
+    <>
       <input
         type="text"
-        placeholder="Search.."
-        className="bg-white p-2 rounded-md border-gray-400 border-2 hover:scale-105 w-full"
+        placeholder="Search..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="bg-[#0B0C10] border border-[#00BFFF] text-[#C5C6C7] px-3 py-2 rounded-md w-full"
       />
 
-      {/* Category Filter */}
-      <h1 className="mt-5 font-semibold text-xl">Category</h1>
+      {/* Category */}
+      <h1 className="mt-5 font-semibold text-xl text-white">Category</h1>
       <div className="flex flex-col gap-2 mt-3">
         {categoryOnlyData?.map((item, index) => (
-          <div key={index} className="flex gap-2 items-center">
+          <label
+            key={index}
+            className="flex items-center gap-2 cursor-pointer text-[#C5C6C7]"
+          >
             <input
               type="checkbox"
-              checked={selectedCategory === item}
-              onChange={() => setSelectedCategory(item)}
+              name={item}
+              checked={category === item}
+              value={item}
+              onChange={handleCategoryChange}
+              className="accent-[#00FFFF]"
             />
-            <button
-              className="cursor-pointer uppercase hover:scale-105"
-              onClick={() => setSelectedCategory(item)}
-            >
-              {item}
-            </button>
-          </div>
+            {item.toUpperCase()}
+          </label>
         ))}
       </div>
 
-      {/* Brand Filter */}
-      <h1 className="mt-5 font-semibold text-xl">Brand</h1>
+      {/* Brand */}
+      <h1 className="mt-5 font-semibold text-xl text-white">Brand</h1>
       <select
-        className="bg-white w-full p-2 rounded-md border-gray-200 border-2 mt-3 cursor-pointer hover:scale-105"
-        value={selectedBrand}
-        onChange={(e) => setSelectedBrand(e.target.value)}
+        value={brand}
+        onChange={handleBrandChange}
+        className="bg-[#0B0C10] border border-[#00BFFF] text-[#C5C6C7] px-3 py-2 rounded-md w-full mt-2"
       >
         {brandOnlyData?.map((item, index) => (
           <option key={index} value={item}>
@@ -62,54 +69,55 @@ export default function FilterSection() {
         ))}
       </select>
 
-      {/* Price Filter */}
-      <h1 className="mt-5 font-semibold text-xl">Price Range</h1>
-      <div className="flex flex-col gap-2">
-        <label htmlFor="priceRange">Price range: $0 - ${price}</label>
-        <input
-          id="priceRange"
-          type="range"
-          min={0}
-          max={5000}
-          step={100}
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          className="hover:scale-105"
-        />
-      </div>
+      {/* Price Range */}
+      <h1 className="mt-5 font-semibold text-xl text-white">Price Range</h1>
+      <label className="text-[#C5C6C7]">
+        ${priceRange[0]} - ${priceRange[1]}
+      </label>
+      <input
+        type="range"
+        min="0"
+        max="5000"
+        value={priceRange[1]}
+        onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
+        className="w-full mt-1 accent-[#00FFFF]"
+      />
 
-      {/* Reset Button */}
       <button
-        className="bg-red-500 text-white rounded-md px-3 py-1 mt-5 cursor-pointer hover:scale-105 hover:bg-red-600"
-        onClick={() => {
-          setPrice(5000);
-          setSelectedCategory("All");
-          setSelectedBrand("All");
-        }}
+        onClick={resetFilters}
+        className="bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-md shadow-lg hover:from-cyan-600  hover:to-purple-600 transition-all duration-300 px-7 py-2 font-semibold w-full"
       >
         Reset Filters
       </button>
-    </div>
+    </>
   );
 
   return (
-    <div className="w-full">
-      {/* Mobile/Tablet Toggle Button */}
-      <div className="lg:hidden mb-4">
-        <button
-          onClick={() => setShowFilters((prev) => !prev)}
-          className="flex items-center gap-2 bg-gray-200 hover:bg-gray-300 text-black font-semibold px-4 py-2 rounded-md w-full"
-        >
-          <IoFilter className="text-xl" />
-          {showFilters ? "Hide Filters" : "Show Filters"}
-        </button>
-        {showFilters && <FilterContent />}
+    <>
+      {/* Desktop Filters */}
+      <div className="bg-[#1F2833] p-4 rounded-md h-max hidden md:block w-full">
+        {FilterContent()}
       </div>
 
-      {/* Desktop Sidebar */}
-      <div className="hidden lg:block">
-        <FilterContent />
+      {/* Mobile & Tablet Filters */}
+      <div className="md:hidden mb-6">
+        <button
+          onClick={() => setShowFilters(!showFilters)}
+          className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white
+          text-lg rounded-md shadow-lg hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 px-7 py-2 font-semibold w-full"
+        >
+          <BsFilterLeft size={30} />{" "}
+          {showFilters ? "Hide Filters" : "Show Filters"}
+        </button>
+
+        {showFilters && (
+          <div className="bg-[#1F2833] p-4 mt-4 rounded-md">
+            {FilterContent()}
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
-}
+};
+
+export default FilterSection;

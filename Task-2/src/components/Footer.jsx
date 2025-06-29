@@ -9,21 +9,21 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-200 py-10">
+    <footer className="py-10 bg-[#101820] shadow-lg text-[#C5C6C7] ">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-12">
         {/* Info */}
         <div>
           <Link to="/">
-            <h1 className="text-red-500 text-2xl font-bold">Zaptro</h1>
+            <h1 className="text-2xl font-bold" style={{ color: "#00FFFF" }}>
+              Ecom
+            </h1>
           </Link>
           <p className="mt-2 text-sm">
             Powering Your World with the Best in Electronics.
           </p>
-          <p className="mt-2 text-sm">
-            123 Electronics St, Style City, NY 10001
-          </p>
-          <p className="text-sm">Email: support@Zaptro.com</p>
-          <p className="text-sm">Phone: (123) 456-7890</p>
+          <p className="mt-2 text-sm">hyderabad, telangana, India</p>
+          <p className="text-sm">Email: support@Ecom.com</p>
+          <p className="text-sm">Phone: +91 8985046331</p>
         </div>
 
         {/* Customer Service */}
@@ -31,19 +31,38 @@ export default function Footer() {
           <h3 className="text-xl font-semibold mb-2">Customer Service</h3>
           <ul className="text-sm space-y-2">
             <li>
-              <Link to="/contact">Contact Us</Link>
+              <Link to="/contact" className="hover:text-[#00FFFF] transition">
+                Contact Us
+              </Link>
             </li>
             <li>
-              <Link to="/shipping-returns">Shipping & Returns</Link>
+              <Link
+                to="/shipping-returns"
+                className="hover:text-[#00FFFF] transition"
+              >
+                Shipping & Returns
+              </Link>
             </li>
             <li>
-              <Link to="/faqs">FAQs</Link>
+              <Link to="/faqs" className="hover:text-[#00FFFF] transition">
+                FAQs
+              </Link>
             </li>
             <li>
-              <Link to="/order-tracking">Order Tracking</Link>
+              <Link
+                to="/order-tracking"
+                className="hover:text-[#00FFFF] transition"
+              >
+                Order Tracking
+              </Link>
             </li>
             <li>
-              <Link to="/size-guide">Size Guide</Link>
+              <Link
+                to="/size-guide"
+                className="hover:text-[#00FFFF] transition"
+              >
+                Size Guide
+              </Link>
             </li>
           </ul>
         </div>
@@ -55,28 +74,28 @@ export default function Footer() {
             <a
               href="#"
               aria-label="Facebook"
-              className="hover:text-red-500 hover:scale-110"
+              className="hover:text-[#00FFFF] hover:scale-110 transition"
             >
               <FaFacebook />
             </a>
             <a
               href="#"
               aria-label="Instagram"
-              className="hover:text-red-500 hover:scale-110"
+              className="hover:text-[#00FFFF] hover:scale-110 transition"
             >
               <FaInstagram />
             </a>
             <a
               href="#"
               aria-label="Twitter"
-              className="hover:text-red-500 hover:scale-110"
+              className="hover:text-[#00FFFF] hover:scale-110 transition"
             >
               <FaTwitterSquare />
             </a>
             <a
               href="#"
               aria-label="Pinterest"
-              className="hover:text-red-500 hover:scale-110"
+              className="hover:text-[#00FFFF] hover:scale-110 transition"
             >
               <FaPinterest />
             </a>
@@ -93,11 +112,11 @@ export default function Footer() {
             <input
               type="email"
               placeholder="Your email address"
-              className="w-full p-2 rounded-md text-white cursor-pointer mb-2 sm:mb-0 sm:rounded-l-md sm:rounded-r-none focus:outline-none focus:ring-1 focus:ring-white"
+              className="w-full p-2 rounded-md mb-2 sm:mb-0 sm:rounded-l-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-[#00FFFF] bg-[#1F2833] text-[#C5C6C7] border border-[#00FFFF]"
             />
             <button
               type="submit"
-              className="bg-red-600 text-white px-4 py-2 rounded-md sm:rounded-l-none sm:rounded-r-md hover:bg-red-700 hover:scale-105 transition cursor-pointer"
+              className="bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-md lg:rounded-l-none xl:rounded-l-none shadow-lg hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 px-4 py-2 font-semibold"
             >
               Subscribe
             </button>
@@ -106,10 +125,13 @@ export default function Footer() {
       </div>
 
       {/* Footer Bottom */}
-      <div className="mt-8 border-t border-gray-700 pt-6 text-center text-sm">
+      <div
+        className="mt-8 border-t pt-6 text-center text-sm"
+        style={{ borderColor: "#1F2833" }}
+      >
         <p>
           &copy; {new Date().getFullYear()}{" "}
-          <span className="text-red-500">Zaptro</span>. All rights reserved.
+          <span style={{ color: "#00FFFF" }}>Ecom</span>. All rights reserved.
         </p>
       </div>
     </footer>

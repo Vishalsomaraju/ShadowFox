@@ -1,36 +1,112 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getData } from "../context/DataContext";
 import FilterSection from "../components/FilterSection";
-import Loading from "../assets/src_assets_Loading4.webm";
-import Productcard from "../components/Productcard";
+import Loading from "../assets/Loading4.webm";
+import ProductCard from "../components/ProductCard";
+import Pagination from "../components/Pagination";
+import Lottie from "lottie-react";
+import notfound from "../assets/notfound.json";
 
-export default function Products() {
+const Products = () => {
   const { data, fetchAllProducts } = getData();
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("All");
+  const [brand, setBrand] = useState("All");
+  const [priceRange, setPriceRange] = useState([0, 5000]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     fetchAllProducts();
+    window.scrollTo(0, 0);
   }, []);
 
-  return (
-    <div className="px-4">
-      <div className="max-w-7xl mx-auto mb-10">
-        {data?.length > 0 ? (
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 mt-10">
-            {/* Filter Sidebar */}
-            <div className="w-full lg:w-1/4">
-              <FilterSection />
-            </div>
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+    setPage(1);
+  };
 
-            {/* Product Grid */}
-            <div className="w-full lg:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-              {data.map((product, index) => (
-                <Productcard key={index} product={product} />
-              ))}
+  const handleBrandChange = (e) => {
+    setBrand(e.target.value);
+    setPage(1);
+  };
+
+  const pageHandler = (selectedPage) => {
+    setPage(selectedPage);
+    window.scrollTo(0, 0);
+  };
+
+  const filteredData = data?.filter(
+    (item) =>
+      item.title.toLowerCase().includes(search.toLowerCase()) &&
+      (category === "All" || item.category === category) &&
+      (brand === "All" || item.brand === brand) &&
+      item.price >= priceRange[0] &&
+      item.price <= priceRange[1]
+  );
+
+  const dynamicPage = Math.ceil(filteredData?.length / 8);
+
+  return (
+    <div className="bg-[#101829] ">
+      <div className="max-w-6xl mx-auto px-4 mb-10">
+        {data?.length > 0 ? (
+          <>
+            {/* Filter section for small/medium screens (stacked on top) */}
+            <div className="block md:hidden mb-4">
+              <FilterSection
+                search={search}
+                setSearch={setSearch}
+                brand={brand}
+                setBrand={setBrand}
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+                category={category}
+                setCategory={setCategory}
+                handleCategoryChange={handleCategoryChange}
+                handleBrandChange={handleBrandChange}
+              />
             </div>
-          </div>
+            <div className="md:flex gap-8">
+              {/* Filter section for large screens (sidebar) */}
+              <div className="hidden md:block">
+                <FilterSection
+                  search={search}
+                  setSearch={setSearch}
+                  brand={brand}
+                  setBrand={setBrand}
+                  priceRange={priceRange}
+                  setPriceRange={setPriceRange}
+                  category={category}
+                  setCategory={setCategory}
+                  handleCategoryChange={handleCategoryChange}
+                  handleBrandChange={handleBrandChange}
+                />
+              </div>
+              {filteredData?.length > 0 ? (
+                <div className="flex flex-col justify-center items-center w-full">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-7 mt-10">
+                    {filteredData
+                      ?.slice(page * 8 - 8, page * 8)
+                      .map((product, index) => (
+                        <ProductCard key={index} product={product} />
+                      ))}
+                  </div>
+                  <Pagination
+                    pageHandler={pageHandler}
+                    page={page}
+                    dynamicPage={dynamicPage}
+                  />
+                </div>
+              ) : (
+                <div className="flex justify-center items-center md:h-[600px] md:w-[900px] mt-10">
+                  <Lottie animationData={notfound} className="w-[500px]" />
+                </div>
+              )}
+            </div>
+          </>
         ) : (
           <div className="flex items-center justify-center h-[400px]">
-            <video muted autoPlay loop className="w-32 h-32 md:w-48 md:h-48">
+            <video muted autoPlay loop>
               <source src={Loading} type="video/webm" />
             </video>
           </div>
@@ -38,4 +114,6 @@ export default function Products() {
       </div>
     </div>
   );
-}
+};
+
+export default Products;

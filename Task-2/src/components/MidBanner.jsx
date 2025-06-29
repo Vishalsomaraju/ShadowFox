@@ -1,9 +1,11 @@
 import React from "react";
 import banner from "../assets/banner1.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function MidBanner() {
+  const navigate = useNavigate();
   return (
-    <div className="bg-gray-100 md:py-24">
+    <div className="bg-[#101829] md:py-24 -mt-1">
       <div
         className="relative max-w-7xl mx-auto md:rounded-2xl pt-28 bg-cover bg-center h-[550px] md:h-[600px]"
         style={{
@@ -21,7 +23,10 @@ export default function MidBanner() {
               Discover the latest tech innovations with unbeatable prices and
               free shipping on all orders.
             </p>
-            <button className="bg-red-500 hover:bg-red-600 text-white hover:scale-105 font-semibold py-2 px-4 md:py-3 md:px-6 rounded-lg transition duration-300 cursor-pointer">
+            <button
+              className="bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-md shadow-lg hover:from-cyan-600 hover:scale-105 hover:to-purple-600 transition-all duration-300 px-7 py-2 font-semibold"
+              onClick={() => navigate("/products")}
+            >
               Shop Now
             </button>
           </div>
