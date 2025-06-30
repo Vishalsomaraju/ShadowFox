@@ -21,7 +21,7 @@ export default function Home() {
     <section id="home" className="min-h-screen flex items-center">
       <div className="text-white flex flex-col md:flex-row w-full justify-between items-center px-4 sm:px-6 md:px-10 py-16 gap-12 max-w-screen-xl mx-auto">
         <div className="w-full md:w-2/4 text-center md:text-left">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight text-cyan-400 drop-shadow-md flex flex-wrap justify-center md:justify-start">
+          <h1 className="text-3xl sm:text-4xl sm:mt-10 md:text-6xl font-bold leading-tight tracking-tight text-cyan-400 drop-shadow-md flex flex-wrap justify-center md:justify-start">
             {letters.map((char, i) => (
               <span
                 key={i}

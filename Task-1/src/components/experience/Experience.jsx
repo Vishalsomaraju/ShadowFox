@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  FaCss3,
-  FaHtml5,
-  FaJs,
-  FaReact,
-  FaNodeJs,
-  FaGoogle,
-} from "react-icons/fa";
+import { FaCss3, FaHtml5, FaJs, FaReact, FaNodeJs } from "react-icons/fa";
+import { GiFox } from "react-icons/gi";
 import { SiMysql, SiFlask, SiFastapi } from "react-icons/si";
 
 export default function Experience() {
@@ -62,20 +56,29 @@ export default function Experience() {
           <div className="w-full max-w-md">
             <div className="flex flex-col gap-2 bg-slate-950 bg-opacity-45 rounded-xl p-6 shadow-xl transition duration-300 transform hover:scale-105 hover:shadow-purple-500/30">
               <div className="flex items-center gap-4">
-                <FaGoogle color="#4285f4" size={50} />
+                <GiFox color="#ffffff" size={50} />
                 <div>
                   <h2 className="text-xl font-semibold text-purple-400">
-                    Example
+                    Web Development Intern at ShadowFox
                   </h2>
                   <p className="text-sm text-gray-400 italic">
-                    Duration: xxxx – May xxxx
+                    Duration: 1-june-2025 to 30-june-2025
                   </p>
                 </div>
               </div>
               <ul className="list-disc list-inside mt-4 text-sm text-gray-200 leading-relaxed pl-2">
-                <li>Worked on projects involving x, y, z</li>
-                <li>Collaborated in a team of n developers</li>
-                <li>Optimized APIs for better performance</li>
+                <li>
+                  Developed responsive and accessible web interfaces using React
+                  and Tailwind
+                </li>
+                <li>
+                  Got hands on experience with creating web applications using
+                  React
+                </li>
+                <li>
+                  Used Git and GitHub for version control and conducted peer
+                  code reviews
+                </li>
               </ul>
             </div>
           </div>

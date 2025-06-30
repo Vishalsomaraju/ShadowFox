@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  HashRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import axios from "axios";
 
 import Navbar from "./components/Navbar";
@@ -14,6 +20,7 @@ import SingleProduct from "./pages/SingleProduct";
 import CategoryProduct from "./pages/CategoryProduct";
 
 import { useCart } from "./context/CartContext";
+import LoginHandler from "./components/LoginHandler";
 
 const App = () => {
   const [location, setLocation] = useState(null);
@@ -63,9 +70,11 @@ const App = () => {
           openDropdown={openDropdown}
           setOpenDropdown={setOpenDropdown}
         />
+        <LoginHandler />
         <main className="flex-grow">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Navigate to="/Ecommerce" replace />} />
+            <Route path="/Ecommerce" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<SingleProduct />} />
             <Route path="/category/:category" element={<CategoryProduct />} />

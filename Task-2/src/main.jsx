@@ -2,7 +2,7 @@ import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-
+import { HashRouter } from "react-router-dom";
 import { ClerkProvider } from "@clerk/clerk-react";
 import { DataProvider } from "./context/DataContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
@@ -11,7 +11,6 @@ import ScrollToTop from "react-scroll-to-top";
 import { FaArrowUp } from "react-icons/fa6";
 import "react-toastify/dist/ReactToastify.css";
 
-// Clerk Publishable Key from .env
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!PUBLISHABLE_KEY) {
@@ -22,7 +21,10 @@ const root = createRoot(document.getElementById("root"));
 
 root.render(
   <StrictMode>
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+    <ClerkProvider
+      publishableKey={PUBLISHABLE_KEY}
+      afterSignOutUrl="#/Ecommerce"
+    >
       <DataProvider>
         <CartProvider>
           <App />

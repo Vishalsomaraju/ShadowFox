@@ -14,15 +14,15 @@ export default function Projects() {
             title="E-commerce"
             main="A full-stack e-commerce website featuring user authentication, cart management, and Stripe payments."
             image="/ecommerce-preview.png"
-            demoLink="https://ecommerce-demo.com"
-            codeLink="https://github.com/your-repo"
+            demoLink="https://Vishalsomaraju.github.io/Ecommerce/"
+            codeLink="https://github.com/Vishalsomaraju/Ecommerce"
           />
           <ProjectCard
             title="Portfolio Website"
             main="A sleek personal portfolio built with React and TailwindCSS, showcasing projects, skills, and contact integration."
             image="/portfolio-preview.png"
-            demoLink="https://vishal-portfolio.com"
-            codeLink="https://github.com/your-username/portfolio"
+            demoLink="https://Vishalsomaraju.github.io/Portfolio/"
+            codeLink="https://github.com/Vishalsomaraju/Portfolio"
           />
         </div>
       </div>
