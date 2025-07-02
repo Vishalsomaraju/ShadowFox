@@ -83,13 +83,8 @@ export default function Navbar() {
               scrollToSection("home");
             }}
           >
-            <img
-              src="./react.svg"
-              className="h-8 transition-transform duration-300 group-hover:scale-110"
-              alt="react Logo"
-            />
-            <span className="text-xl sm:text-2xl font-semibold whitespace-nowrap dark:text-white transition-transform duration-300 transform group-hover:text-cyan-500 group-hover:scale-110">
-              Portfolio
+            <span className="text-xl flex sm:text-2xl font-semibold whitespace-nowrap dark:text-white transition-transform duration-300 transform">
+              <h1 className="text-cyan-500">P</h1>ortfolio
             </span>
           </a>
 

@@ -319,7 +319,3 @@ Both projects are open source and available under the MIT License.
 - All open-source contributors who made these projects possible
 
 ---
-
-⭐ **Star this repository if you find it helpful!**
-
-_Last updated: June 30, 2025_

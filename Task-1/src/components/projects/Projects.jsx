@@ -1,5 +1,7 @@
 import React from "react";
 import ProjectCard from "./ProjectCard";
+import portfolio from "../../assets/Screenshot 2025-07-02 051149.png";
+import ecommerce from "../../assets/Screenshot 2025-07-02 051229.png";
 
 export default function Projects() {
   return (
@@ -13,14 +15,16 @@ export default function Projects() {
           <ProjectCard
             title="E-commerce"
             main="A full-stack e-commerce website featuring user authentication, cart management, and Stripe payments."
-            image="/ecommerce-preview.png"
+            image={ecommerce}
+            imageAlt="E-commerce Website Screenshot"
             demoLink="https://Vishalsomaraju.github.io/Ecommerce/"
             codeLink="https://github.com/Vishalsomaraju/Ecommerce"
           />
           <ProjectCard
             title="Portfolio Website"
             main="A sleek personal portfolio built with React and TailwindCSS, showcasing projects, skills, and contact integration."
-            image="/portfolio-preview.png"
+            image={portfolio}
+            imageAlt="Portfolio Website Screenshot"
             demoLink="https://Vishalsomaraju.github.io/Portfolio/"
             codeLink="https://github.com/Vishalsomaraju/Portfolio"
           />

@@ -75,10 +75,7 @@ export default function Experience() {
                   Got hands on experience with creating web applications using
                   React
                 </li>
-                <li>
-                  Used Git and GitHub for version control and conducted peer
-                  code reviews
-                </li>
+                <li>Used Git and GitHub for version control</li>
               </ul>
             </div>
           </div>
